@@ -1,0 +1,638 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>L22.2 Release Canvas (WEB)</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bb314f28-9891-4530-9f64-f36416aa056d" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🖥</span></div><h1 class="page-title">L22.2 Release Canvas (WEB)</h1><table class="properties"><tbody><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Cohort</th><td><span class="selected-value select-value-color-brown">Labs 22</span></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Competitors List</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>Created</th><td><time>@Mar 16, 2020 11:10 AM</time></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Description</th><td>This release canvas will be altering the tools that we use for media storage, security, and authorization. </td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Problems Addressed</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to [T] Tech Research Items (Release Canvases)</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to [T] Tech Research Items (Release Canvases)</th><td><a href="L22%202%20Release%20Canvas%20WEB/Copy%20of%20Technical%20Research/T%20Tech%20Research%20Items/https%20www%20notion%20so%20Technical%20Research%2063212e14171.html">https://www.notion.so/Technical-Research-63212e14171d4b609901dc2de8008985</a></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><td><span class="selected-value select-value-color-default">Released</span></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Survey Results</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Tech Research</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>User Interviews</th><td><a href="../T%20Meeting%20Notes/Stakeholder%20meeting%20with%20Wes%201.html">Stakeholder meeting with Wes</a>, <a href="../T%20Meeting%20Notes/Stakeholder%20meeting%20with%20Wes%202.html">Stakeholder meeting with Wes</a></td></tr></tbody></table></header><div class="page-body"><h2 id="e9aeb095-9493-4ba6-97ee-4354087fb185" class="block-color-gray_background">Problem(s) Addressed</h2><p id="501e83de-6ad8-460b-81e1-a539e26229a9" class="">
+</p><ul id="51c3ed13-0825-48e9-990c-417a13d6fb06" class="toggle"><li><details open=""><summary>Netlify does not abide by the current engineering standards</summary><ul id="dc4c596c-fe92-47d6-8fe4-8cea7510a2dc" class="bulleted-list"><li>Currently, the front-end is hosted on Netlify, which is not supported by current engineering standards.</li></ul><ul id="ad3f5e1f-0060-42c2-8bb3-0bef33357bb3" class="bulleted-list"><li>connection to the repo using amplify</li></ul><ul id="bcc4f3fb-84ff-48ab-b80d-f0aac2fff8a2" class="bulleted-list"><li>Possibly look into deploying the back end to AWS (stretch)</li></ul></details></li></ul><p id="14bd7274-320e-49b1-aba0-73a0478950ed" class="">
+</p><ul id="3eade1fd-fa8b-426f-bf7e-5d125a00e3b2" class="toggle"><li><details open=""><summary>Dropbox switch over for media storage - from firebase</summary><ul id="2e9442ca-91f0-4d19-9eb7-86cf6a73b6f7" class="bulleted-list"><li>Dropbox is used by Wes currently by his company pretty heavily<ul id="91f005cf-df4f-46a7-9535-f7f9c62a2b6a" class="bulleted-list"><li>would definitely be more of a hassle for Wes and his company to be converting their files from firebase to Dropbox</li></ul></li></ul><ul id="25578e4a-4d92-40b9-a820-73af231dfdb1" class="bulleted-list"><li>As a team, none of us have used dropbox in any of our projects - plenty of research to be done</li></ul><ul id="368dca8a-9183-44cf-ae8d-4419a491ebc6" class="bulleted-list"><li>How to implement? Users login to their current account, or an App account? - Wes has a shared folder with all current employees at the moment<ul id="29cac966-6465-4e7d-bd29-b09ac5ece559" class="bulleted-list"><li>are there restrictions on whether we can have one account linked to everyone using the app?<ul id="c7c639d5-201b-4057-b108-f2cfcc4a75d4" class="bulleted-list"><li>what about when there are other organizations that join schematic capture?</li></ul></li></ul></li></ul><ul id="eabb4d36-6261-49bd-b954-740ed396cd22" class="bulleted-list"><li>Dropbox documentation stinks... - Where to find the answers to all our questions?  
+</li></ul></details></li></ul><p id="5dbf265e-c6a9-464c-898a-59f8fc58b774" class="">
+</p><ul id="22cb11a1-1e33-4606-b1cd-3269830dc3ca" class="toggle"><li><details open=""><summary>Okta switch over for authorization and security - from firebase</summary><ul id="dc7d2930-a3da-49cd-a352-c777c9953a57" class="bulleted-list"><li>Currently, the front-end uses Firebase for authentication, which is not allowed by current engineering standards.</li></ul><ul id="ff56d65d-d9ce-4ecd-aa46-ed922639450d" class="toggle"><li><details open=""><summary>No user types in current state of app - didn&#x27;t want to implement them when using firebase</summary><ul id="4fb547ee-c891-4ac9-9410-5164b8222c58" class="bulleted-list"><li>Do not allow for technicians to delete photos, update the schematics, edit the parts list, assign jobs to technicians, create clients, create projects, invite users</li></ul><ul id="4bb0d2d2-0365-4e4c-a59b-329e90ec362e" class="bulleted-list"><li>Allow for technicians to access all jobs in their organization (this may not have any real distinguished features until later RC&#x27;s), access jobs assigned to them, mark parts that should be updated (ooo),  upload images to a jobsheet that they&#x27;re assigned to, and that does not have an image that is currently uploaded for that specific part</li></ul><ul id="10257a6b-9924-490f-ac15-16a0c7feacac" class="bulleted-list"><li>Admins have access to everything - assume there is only one admin at this point</li></ul><p id="82aec58b-848d-4f4a-818a-0b54477d6bda" class="">
+</p></details></li></ul></details></li></ul><p id="f5d709e4-f990-4fdb-9274-a54a01d352f3" class="">
+</p><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="8b0f18ae-b155-499b-b41d-8dc232e98716"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Copy/Paste problems from PVD here that will be addressed with this release. May not be completely solved, but it addresses the problem in some way</div></figure><h2 id="3ffb28cc-0f01-43cb-8aee-cc88582316c0" class="block-color-gray_background">Solution</h2><p id="d41eff0c-7965-4e36-a738-745daf90a7fc" class="">
+</p><ul id="e11ca54b-6f5e-4cbf-a3de-5789da627b34" class="toggle"><li><details open=""><summary>Figuring out how to use AWS for our deployed website</summary><ul id="e8aab787-a25c-42c1-9d72-ee251949960b" class="bulleted-list"><li>Connect DNS to AWS rather than Netlify </li></ul><ul id="9eeba89d-a13d-4336-827d-51bd92535bc3" class="bulleted-list"><li>Deprecate current Netlify deployment</li></ul><ul id="c9545104-6463-4dab-93df-214177f59505" class="bulleted-list"><li>AWS is an optional course given to us next week in labs <ul id="09cf20c5-30f3-42d8-b731-2891f4056a56" class="bulleted-list"><li>Amplify short hour demo will also be a great help - video to come </li></ul></li></ul></details></li></ul><p id="0517357d-6a6d-4186-afb0-5a8b8564a18f" class="">
+</p><ul id="a7420221-2c31-46d5-acf0-18bc4c71f20c" class="toggle"><li><details open=""><summary>Figure out the capability of Dropbox, and whether or not we will be able to work with it in this in the long run</summary><ul id="ae434b2b-2819-4c5f-a53f-7c0c35e1c2c0" class="bulleted-list"><li>Setup test Dropbox</li></ul><ul id="d191c95e-64ec-4795-90ea-20de2e07b343" class="bulleted-list"><li>Find out ...<ul id="631f3ff6-a107-4739-b4c7-727fa4663ee9" class="bulleted-list"><li>How to upload a picture to dropbox</li></ul><ul id="c5157f92-faa4-4f94-8b2f-d9089d480134" class="bulleted-list"><li>How to access a picture from Dropbox - will this bring some security risks to our app?<ul id="cc3bcaac-672a-4b67-897b-a482fedb7324" class="bulleted-list"><li>if it does, will that lose integrity of what we are trying to accomplish? We feel like a big point of this app is to see these photos that are being uploaded. Would like users to access them even after uploaded</li></ul></li></ul><ul id="cedeb40f-2ff0-4666-a01e-dbef2930c209" class="bulleted-list"><li>If it&#x27;s possible to create folders within Dropbox - maybe on creation of a new project we could create a folder in Dropbox for organization - no need for Wes to do it manually<ul id="e51f9802-f457-4809-a569-32386a925143" class="bulleted-list"><li>how to store path to this folder for when we want to post / access photos here  </li></ul></li></ul><ul id="26480ba1-a5ee-40e6-a54b-e5399bb2e9c4" class="bulleted-list"><li>back end ⇒ Dropbox or Dropbox ⇒ back end for storage? </li></ul></li></ul><ul id="638f6c48-b2c9-487e-bae1-126aef134fe9" class="bulleted-list"><li>Wes&#x27;s current Dropbox? Create new Dropbox? - currently a shared folder among all current employee&#x27;s Wes organizes uploads after the fact. </li></ul><ul id="ee220237-8121-4800-8136-57754959068a" class="bulleted-list"><li>Possible later question ⇒ how to setup a new dropbox area for separate organization from Wes and Alloy Technologies</li></ul></details></li></ul><p id="3f852366-5812-4908-8435-7005d5f589bb" class="">
+</p><ul id="5867ef66-d299-4180-a8c3-2469727de7ff" class="toggle"><li><details open=""><summary>Figure out the capability of Okta, how to implement</summary><ul id="105d23ee-dce4-45e4-8d0b-7e2590f161e9" class="bulleted-list"><li>Create Okta account for Schematic Capture</li></ul><ul id="1b4676ac-ce38-4f64-a101-3383b9e31a3c" class="bulleted-list"><li>Create test project using Okta to ease integration into the main application.<ul id="193bec32-e0ab-416e-9888-089e4aa3bbbf" class="bulleted-list"><li>find the endpoints that we need to hit so there is no front end messiness - only back end deployment (clean)</li></ul></li></ul><ul id="d7f09e46-4bf5-46c2-abe3-96b43efe5870" class="bulleted-list"><li>Create user groups corresponding to user types in the Schematic Capture application.</li></ul><ul id="322809c0-ddbd-474c-a8bc-b52f73963323" class="bulleted-list"><li>Change authorization endpoints and middleware to utilize Okta instead of Firebase.</li></ul></details></li></ul><p id="5474ee98-4c10-479c-ae6b-a603d7d62e52" class="">
+</p><h2 id="26109e64-2852-4026-80ad-8268c6f98c61" class="block-color-gray_background">Objectives Supported</h2><p id="a3eba1f0-81e7-4a30-a43d-54446fe88a67" class="">
+</p><ul id="d42a5e46-e4fe-490f-bec0-de887e1e921b" class="bulleted-list"><li>Switch over to the more reputable deployment service in AWS from netlify to ensure as frequent up time as possible limiting factors causing faulty connections. </li></ul><ul id="02a39f50-67f0-4aa5-8587-ba2f469a0dfc" class="bulleted-list"><li>Adopt current Labs 22 engineering standards in supporting Okta authentication over Firebase</li></ul><ul id="9d9d1792-ac53-4eb4-9a7c-303f3fb2294c" class="bulleted-list"><li>Switch over all file sharing to Dropbox</li></ul><figure id="244291f7-9710-434a-ad90-b81fe2525815" class="link-to-page"><a href="L22%202%20Release%20Canvas%20WEB/Copy%20of%20Vision%20Problem%20Objectives.html"><span class="icon">🚀</span>Copy of Vision - Problem &amp; Objectives</a></figure><p id="8f0f3e3a-2839-4006-a3b5-87c811254402" class="">
+</p><h2 id="2b7eb2ae-4521-4eda-8aaa-0170a92a6632" class="block-color-gray_background">Key Results</h2><p id="078dab10-94c5-42f3-b4f3-8a18b15e1a35" class="">
+</p><ul id="e8b5d21d-b38f-426f-8c29-99c018b6b648" class="bulleted-list"><li>Code base conforms to current engineering standards by 100% (authentication, and deployment method)</li></ul><ul id="067c8959-031d-4ea9-8e37-dbcca9f60912" class="bulleted-list"><li>Implement Dropbox to allow for current employees of Alloy Solutions to maintain current workflow</li></ul><ul id="bba752c1-0d4c-4aed-aab5-c68035dc2953" class="bulleted-list"><li>Eliminate Firebase, Netlify, and Google login from the current code base.</li></ul><figure id="4400c1e0-a854-4441-ad3b-2b735d3b5e55" class="link-to-page"><a href="L22%202%20Release%20Canvas%20WEB/Copy%20of%20Technical%20Research.html"><span class="icon">📐</span>Copy of Technical Research</a></figure><p id="ea5902ae-512f-454d-9f35-2d400d5ee811" class="">
+</p><h2 id="4b959936-2280-4905-9fde-deee46b71b5f" class="block-color-gray_background">End Results</h2><p id="d5a08431-d117-4a50-bf5e-1367316f6816" class="">
+</p><ul id="c3e85156-1bd5-46e6-beab-f58d0530a989" class="bulleted-list"><li>AWS has increased the speed at which our team is able to tackle new problems, while also increasing the speed of normal usage of the application as a whole. No downtime has been recorded.<ul id="81a7708b-71cb-4076-9da8-45587acf7f2c" class="bulleted-list"><li>We have needed separately deployed branches - AWS makes this a breeze compared to netlify. These deployments are also quicker than past deployments as well further increasing productivity</li></ul></li></ul><ul id="0b357fc9-f02b-415b-bd4f-696b9f69e7cf" class="bulleted-list"><li>Current workflow of employees at Wes&#x27;s company will not change at all - their Dropbox related work has stayed completely the same besides the fact that their uploading will be done through our application as opposed to Dropbox itself. They will continue to use their own specific Dropbox, with shared folder from stakeholder Wes.</li></ul><p id="76dbe207-c72d-4367-b3e2-ce9e448a61a2" class="">
+</p></div></article></body></html>

@@ -1,0 +1,624 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Release Canvas Master List</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0c735227-9740-49d2-9208-6dc388240ec1" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📐</span></div><h1 class="page-title">Release Canvas Master List</h1><table class="properties"><tbody><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Cohort</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Competitors List</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>Created</th><td><time>@Mar 12, 2020 3:14 PM</time></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Description</th><td>The objective of this canvas cycle is to refine information architecture for Admin and Technician modes for desktop <strong>Specifically CRUD functionality.</strong></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Problems Addressed</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to [T] Tech Research Items (Release Canvases)</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Related to [T] Tech Research Items (Release Canvases)</th><td><a href="L22%202%20Release%20Canvas%20WEB/Copy%20of%20Technical%20Research/T%20Tech%20Research%20Items/https%20www%20notion%20so%20Technical%20Research%2063212e14171.html">https://www.notion.so/Technical-Research-63212e14171d4b609901dc2de8008985</a></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Survey Results</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Tech Research</th><td><a href="../Technical%20Research/T%20Tech%20Research%20Items/https%20www%20notion%20so%20Technical%20Research%2063212e14171.html">https://www.notion.so/Technical-Research-63212e14171d4b609901dc2de8008985</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>User Interviews</th><td></td></tr></tbody></table></header><div class="page-body"><h2 id="da0ca004-90ff-4478-b11c-9ea94f5f8c47" class="block-color-gray_background">Problem(s) Addressed</h2><ul id="72660846-d462-4be4-a292-364876467dda" class="bulleted-list"><li>Users must be able to organize their photos and notes for their job sheets and projects</li></ul><ul id="f65b36c6-dc66-4e7a-ac69-ab56e3dc0476" class="bulleted-list"><li>Nothing shows up to show user a schematic has been selected to be sent to cloud</li></ul><ul id="11ad50fb-a038-488d-8fb6-828962d88c76" class="bulleted-list"><li>Schematic cannot be seen on Web portion of the app</li></ul><ul id="2f5259f4-bbbe-491b-be3d-6372900fe64e" class="bulleted-list"><li>User stays logged in even when token is expired</li></ul><ul id="5b283db1-3bfa-4041-b6c1-151fc5d1eb2f" class="bulleted-list"><li>Cannot generate new token without using postman ATM</li></ul><ul id="b6d444e7-b825-4b4d-b97c-898e077310ad" class="bulleted-list"><li>If getting multiple errors when trying to login (invalid credentials) you will only get a notification for a 403 the first time, all other times you will get back no error</li></ul><ul id="520f14f4-df5a-4506-89a6-1e922497ddf7" class="bulleted-list"><li>Back-end documentation is not explicit as to the cause of its errors</li></ul><ul id="d82bc0f2-fc18-4c5b-b1d0-b9735c54efc7" class="bulleted-list"><li>Clients are indistinguishable from each other besides their name... what if you have 1000+ clients <ul id="f408f31f-d016-4ce8-8e6a-1ef17ce3912b" class="bulleted-list"><li>Search or filter client list</li></ul></li></ul><ul id="b08a6c71-716a-4abf-921d-1b8ea01ffa52" class="bulleted-list"><li>Only see 4 columns of the csv file when parsed to json on the front end... possible scroll bar issue / too many columns to view all at once</li></ul><ul id="15d5521f-9ac8-43c6-a01c-4871a564e966" class="bulleted-list"><li>Users and admins have the same permissions ATM...</li></ul><ul id="9981efdf-e867-4c42-9072-0f8915bcd221" class="bulleted-list"><li>Cannot create new clients (as admin)</li></ul><ul id="bcceaabd-50af-4bf2-a0d0-b57979d06e8e" class="bulleted-list"><li>Cannot sign in with google account</li></ul><ul id="146cbc72-9384-4f2b-a298-13eb93bb739f" class="bulleted-list"><li>Cannot &#x27;delete&#x27; inactive clients (as admin)</li></ul><ul id="0c0a1dcd-0265-4757-bce9-c71f2eb46a11" class="bulleted-list"><li>landing page loads slowly - image to large?</li></ul><ul id="1754c082-d6ef-48ad-b67a-60838b225eff" class="bulleted-list"><li>landing page - more info about product / app</li></ul><ul id="df798648-2334-4318-8790-8a8c7bbd33a1" class="bulleted-list"><li>long wait on initial Google sign in - why?</li></ul><ul id="95c07176-cb3d-4e9f-930e-5fe828b19e9a" class="bulleted-list"><li>tab icon in browser displays React logo</li></ul><ul id="fde8441e-c3ec-4d50-8a35-882bed8aa679" class="bulleted-list"><li>landing page - footer covers login form on short screen</li></ul><ul id="be42175b-70c5-4d67-a9a1-8634d91fc422" class="bulleted-list"><li>Front-end: Components component in front end references <a href="http://component.id">component.id</a> when it should reference the component id</li></ul><ul id="76cfbff3-2f20-419f-aad1-d74adf9697f4" class="bulleted-list"><li>Front-end: Technician has access to / can see options / buttons for functionality he doesn&#x27;t have access to.</li></ul><ul id="8081f1c7-d630-42ec-89d8-de9782fe91a5" class="bulleted-list"><li>Back-end: The token cannot be refreshed.</li></ul><ul id="4a80b6e1-bc18-4831-80a1-8ea2c7dfdbc0" class="bulleted-list"><li>Developers do not have access to a super-user / admin account for testing</li></ul><ul id="97bb5061-2a35-4e76-92a5-855705073781" class="bulleted-list"><li>Hardly any testing has been done on the front-end or back-end</li></ul><ul id="1d570f33-5654-4749-8955-d8b1fe906a43" class="bulleted-list"><li>Build functionality to edit photos taken by technician to only be allowed before they&#x27;re uploaded to cloud</li></ul><ul id="b0eabf62-4136-4de6-bb9f-1e49e3376695" class="bulleted-list"><li>No functionality for accepting an image to PUT / POST in jobsheet data, will eventually be sent to dropbox </li></ul><ul id="92a51e3d-84bf-40bc-846a-ddf4ef89156f" class="bulleted-list"><li>Rename tables, user becomes technician</li></ul><ul id="d24f81b1-7711-4f41-9fed-9165ee00ead4" class="bulleted-list"><li>add technician_id to jobsheet that references assigned technician&#x27;s id</li></ul><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="2b8d75cf-f00e-4ef4-a094-4fb00976d469"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Copy/Paste problems from PVD here that will be addressed with this release. May not be completely solved, but it addresses the problem in some way</div></figure><h2 id="fed4b0f7-17c1-4c3d-b8f5-c63c6fed0c0d" class="block-color-gray_background">Solution</h2><ul id="ef5a61c5-babf-4d94-8a5e-cc9500d0e162" class="bulleted-list"><li>Give users the ability to upload new pictures or saved pictures to the job sheet or project</li></ul><ul id="7230f490-60f0-47f2-bfea-46bce3d6cb93" class="bulleted-list"><li>GET schematic from firebase database (or if changed to dropbox, same to dropbox)</li></ul><ul id="f583650e-8045-45c6-acec-e65268636d73" class="bulleted-list"><li>add a textbox showing the name of the schematic that you are uploading from your computer</li></ul><ul id="b7d2385b-8193-44ba-8457-02d8d20f0b02" class="bulleted-list"><li>if your token is expired, redirect to homepage - also make length of valid token way longer than it is currently (1hr current)</li></ul><ul id="a9dfcb1e-e2f1-4f10-9066-13a303af7691" class="bulleted-list"><li>Invite user is a difficult process so far, the token is too long for the email, the invitation link that allows for you to create a new account doesn&#x27;t work, might need a whole overhaul</li></ul><ul id="4a7e088a-9f3b-4658-8f7b-7b19a6fea100" class="bulleted-list"><li>figure out what is happening with the notification system that is in place right now, and how it will be possible to display errors multiple times even if they are the same error</li></ul><ul id="521c2270-c7d4-48b5-9878-f6b765f44dce" class="bulleted-list"><li>search feature on the clients, add profile picture maybe too</li></ul><ul id="b2353ec6-5106-4e86-a08a-a86a662123b4" class="bulleted-list"><li>add all other columns of the csv to the front end display, work from there to decide what to do if the table is too big to work on from a desktop. Click and zoom in?</li></ul><ul id="1925b125-f612-41a8-a572-72df36c3a0c2" class="bulleted-list"><li>Resize image on landing page</li></ul><ul id="68d3688d-7c1e-4abd-bee1-a6083c59b7db" class="bulleted-list"><li>Work closely with UX designer to develop more content for the landing page</li></ul><ul id="8a60569d-16c1-49e1-8281-714d67e4c322" class="bulleted-list"><li>Optimize google sign in or worker threads (multiple threads to handle async operations)</li></ul><ul id="60e73daa-14f5-48b6-b051-c07440c47ff7" class="bulleted-list"><li>Change icon on browser tab</li></ul><ul id="fc075df3-4169-45d7-ad8d-bdc0e36ea739" class="bulleted-list"><li>Change CSS on landing page to ensure proper layout for shorter screens.</li></ul><ul id="3c192d81-4243-48da-9d96-f4d3198253b8" class="bulleted-list"><li>Add functionality to delete token or refresh it after it expires</li></ul><ul id="3fc700e7-72a3-49f2-9975-1d680d0b39fc" class="bulleted-list"><li>Change column referenced in Component component to display the proper data</li></ul><ul id="12b7d58c-8689-4274-b755-e734e11e9b87" class="bulleted-list"><li>Add functionality to change visibility of content not accessible by the user</li></ul><ul id="34a2df5e-d32c-4e56-860b-6c13026f6ad9" class="bulleted-list"><li>Add checkRole middleware to the back-end</li></ul><ul id="796843d5-8965-444f-8871-4b6687423215" class="bulleted-list"><li>Make the expiration time of a token long enough to cover an entire working day</li></ul><ul id="5f6ef7b2-8205-41d1-90dd-3369059a4429" class="bulleted-list"><li>Create a super-user / admin account for testing</li></ul><ul id="e7ad8c62-acd7-42bf-9989-670b9f3a30e6" class="bulleted-list"><li>Update documentation to be explicit about reason for each error.</li></ul><ul id="06cb0772-edb8-4add-91df-be40840f3c61" class="bulleted-list"><li>Implement testing on front and back-end</li></ul><ul id="3b8a5672-48db-4210-b011-6c6e188b435c" class="bulleted-list"><li>Backend - create the ability to push to dropbox though the backend, store url here as well</li></ul><p id="c753c694-22ff-490f-a0d1-70fcee963869" class="">
+</p><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="224db08e-3473-4da6-84af-821831153fff"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Less detail than user stories, but more detail than objectives. What will the solution look like in words? Basic examples below. </div></figure><h2 id="b6b96c11-a77d-4108-ade9-c19cb5aaf69b" class="block-color-gray_background">Objectives Supported</h2><ul id="8d133e6b-b6a9-481f-bfc0-7475ee0a513a" class="bulleted-list"><li>Giving users an easy and intuitive product to help organize their work</li></ul><ul id="f13468bd-387f-4fee-ab38-599f47eb122c" class="bulleted-list"><li>Gives users the ability to complete desk work on their phone to allow for less extra time off site</li></ul><ul id="32884371-b550-45f9-a254-19bc1a3817f9" class="bulleted-list"><li>gives users a tool that makes their job easier to work through a flow</li></ul><ul id="8c0d33e0-2d43-4039-876a-6496772ebee9" class="bulleted-list"><li>Allows new employees to better understand the job at hand, has ability to see all the necessary information on their phone</li></ul><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="01849621-e8d4-41d9-bdff-dac58c7c99a4"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Copy/paste reference objectives that this release will support.</div></figure><h2 id="f69d15d3-4824-4206-8880-1de96199bf57" class="block-color-gray_background">Key Results</h2><ul id="f00db792-0732-4d0f-ac24-6dc3ae6f8852" class="bulleted-list"><li>Refactor when necessary to make functionality work</li></ul><ul id="e10a8c6e-f8c9-427c-b994-0963c3495a14" class="bulleted-list"><li>Bug fixes</li></ul><ul id="80dc51e4-89b1-49de-b168-3ee4139ad9e1" class="bulleted-list"><li>Users and Admins have specified abilities that are distinguished based on their role</li></ul><ul id="0a59fd67-a21e-4e9c-bea7-33b4d8720111" class="bulleted-list"><li>Can go through basic flow with limited bugs</li></ul><ul id="ef978b6d-841e-46ae-8e01-a63e56b9fa8a" class="bulleted-list"><li>Reach the testing 40% goal</li></ul><ul id="b5b9e936-f935-42b3-bd48-7f16d2eb38d1" class="bulleted-list"><li>Reach the B rated maintainability goal</li></ul><ul id="1859be47-6b84-46bd-bc2a-1156bacfbdca" class="bulleted-list"><li>90+% of users feel that the product is easy to use and intuitive</li></ul><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="3fa6c88e-3786-4668-a6fc-d24ee4330b4e"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Metric based true/false statement(s) that can be evaluated after the release is delivered. Can be a measure of feature adoption, experience improvement, or survey results.</div></figure><p id="48318c5d-f091-4a60-99c0-d1bdb6add221" class="">
+</p><figure id="63212e14-171d-4b60-9901-dc2de8008985" class="link-to-page"><a href="../Technical%20Research.html"><span class="icon">📐</span>Technical Research</a></figure><p id="7e7f1c27-200f-4cee-8407-3195e6b1ac00" class=""><a href="https://www.notion.so/Technical-Research-63212e14171d4b609901dc2de8008985">https://www.notion.so/Technical-Research-63212e14171d4b609901dc2de8008985</a></p></div></article></body></html>

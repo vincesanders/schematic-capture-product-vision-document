@@ -1,0 +1,636 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Technical Research</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="63212e14-171d-4b60-9901-dc2de8008985" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📐</span></div><h1 class="page-title">Technical Research</h1></header><div class="page-body"><figure class="block-color-gray callout" style="white-space:pre-wrap;display:flex" id="6ca54c2b-a1c6-4e52-9536-e8e2c3c5bf72"><div style="font-size:1.5em"><span class="icon">❓</span></div><div style="width:100%">See <a href="https://www.notion.so/lambdaschool/PVD-Technical-Research-Guide-771ac8d9283b4bf7b0de3cc9e66e4a92"><mark class="highlight-blue"><strong>Technical Research Guide</strong></mark></a> for more info on using this page</div></figure><p id="82b04a1f-dd7c-4413-ab25-50e91ae7c396" class="">
+</p><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="363b4371-d621-4a67-b0fe-0a9c9921f71f"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Add notes to this page about your product technical research. 
+What you learn and your notes and considerations about them.</div></figure><p id="7459386f-cf84-4da4-b3b1-6aa949201ba1" class="">
+</p><h2 id="cfe4b49f-dd34-4f22-89fa-21609aaa073a" class="">Technical Architecture Planning</h2><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="0e77467d-41f0-435a-aa4a-0797fd57f542"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Here include UML&#x27;s, live feature lists, or any other visuals that explain the <strong>current architecture</strong> only. Any models or visuals from previous versions should be placed into another document and linked below in the previous version it was in. </div></figure><p id="4bd84409-793b-4879-97aa-1810dadb882d" class="">
+</p><p id="b128b2a3-7fb2-4203-8aa9-09eee778cb5e" class="">
+</p><h2 id="7b9d69cf-b046-4e83-90c8-dd2515915dec" class="">Platforms</h2><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="c75a4d71-0ee3-49b4-b0d2-515a13b2eed3"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">What platform(s) is your product going to be on? Where do you think most users will use your app? (native app, mobile web, desktop, etc...) 
+Brainstorm your ideas here. Document in the 🏗 <strong>Architecture</strong> pag</div></figure><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="e988b31f-a130-4a22-b749-1fa7f08c69cd"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">How will you architect your product to accommodate your users&#x27; preferred platform?(Progressive Web App, Native Mobile App, etc... If your project is going to have more than 1 platform, list them all here)</div></figure><p id="ff821813-9d6c-48f8-85d1-e6d0fd664965" class="">
+</p><h2 id="d0529921-bda6-4943-9092-9390f91faded" class="">Back-end</h2><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="24c2e5c8-d33d-45b1-a248-06c40e088eaa"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Back end brainstorming and research notes here</div></figure><p id="c72d951e-7f3e-485e-a3d7-ec0477b3caa3" class="">
+</p><p id="f2d5b478-adc5-4bb4-b8aa-ea6d12c58c09" class="">Database (current) - PostgreSQL (data), Firebase (auth)</p><p id="5e876193-181c-4856-85df-735a68cc03f3" class="">Framework / Language - Express, Node.JS</p><p id="b814b8d5-e705-424b-8cdb-454b8f67c494" class="">Interacting with API&#x27;s - REST</p><p id="e547b51c-4fe8-491e-9f21-ff17e673fb6a" class="">Alternatives -  Django, Okta</p><p id="1ed2a7fe-7e3b-4b26-90ee-e028a9b78286" class="">Why this combo - It is scalable, secure, and the web team is comfortable with the Express framework.</p><p id="901ed476-57d1-49cc-9eb8-4b21762ee9f4" class="">Potential Challenges - Linking up a reference from the stored media on cloud storage to the relevant job sheets on the Postgres database.</p><h2 id="3e8224b6-e7a3-42e8-bb1b-2e631ca52840" class=""><strong>API Integrations</strong></h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="49309315-6394-4345-a382-c9b3dc56a15d"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">See <a href="https://www.notion.so/lambdaschool/Technical-Research-Guide-771ac8d9283b4bf7b0de3cc9e66e4a92#0488c932279b46cb868dfb55864e3da1">the guide</a> for more info on how/what to research here.</div></figure><p id="6faebf3c-172d-45a9-870a-35fcac8e514d" class="block-color-yellow"><strong>What Feature(s) is/are this API connected to?</strong></p><div id="859ac176-8771-44db-a8f3-9e65335b4145" class="column-list"><div id="bed14c81-7051-4942-a7eb-9b6810fd0474" style="width:50%" class="column"><p id="5cdb7697-6d05-4044-aab1-502519c07a57" class=""><strong>Firebase</strong></p><ul id="235cd349-0f69-445e-9c87-36a7d10a05f3" class="bulleted-list"><li>Authentication, Storage</li></ul><p id="fcd25020-03b9-4933-97b2-784a8125d883" class="">(Will reevaluate auth and storage by Labs 22)</p></div><div id="07024530-37ff-4e21-b987-f491ad891dc1" style="width:50%" class="column"><p id="97337ed5-7c9e-4ece-bed6-21583b794e6a" class=""><strong>Postgres (Express)</strong></p><ul id="1083a5c2-67e0-49dc-bc28-447adc624394" class="bulleted-list"><li>Database</li></ul><p id="35bf27f7-fc80-49d8-9cdc-7f281258c38e" class="">
+</p></div></div><p id="935b8ff0-5663-46c0-8ce1-708f48837a52" class="block-color-yellow"><strong>What will this API integration accomplish in the feature(s) to which it’s connected?</strong></p><div id="6ce0bde2-0fda-48c8-8b21-3bc09f619d15" class="column-list"><div id="aa1a012c-e776-4230-80cd-525236e83f04" style="width:50%" class="column"><p id="cc4abce2-ffff-4215-bd7d-7d2efa1d8eb4" class=""><strong>Firebase</strong></p><ul id="fb344de1-c956-434b-af7c-aa911765a58f" class="bulleted-list"><li>Provide secure authentication for the user.</li></ul><p id="ee026afc-b8c1-4d78-a94e-e1f00389428a" class="">
+</p></div><div id="fc25314f-93f4-4d6d-bc55-c220b7064e8a" style="width:50%" class="column"><p id="9697b67e-6ba0-4687-bc08-52119b9c33fc" class=""><strong>Postgres (Express)</strong></p><ul id="779580b0-b96d-4490-bf5d-fdeecd8ee1c8" class="bulleted-list"><li>Stores related data (Organization → Clients → Projects → Job sheets → Components ).</li></ul></div></div><p id="a32d24ce-6c04-4cee-a7d3-8d78f30433f4" class="block-color-yellow"><strong>What alternatives did you consider?</strong></p><div id="517199d3-d9e1-49d7-a25b-d0d26d87c8d4" class="column-list"><div id="5b41d209-2c73-46eb-9fa0-a14526d58ccf" style="width:50%" class="column"><p id="b0c71c21-ede1-4245-a1fb-a9841525fdfc" class=""><strong>Firebase</strong></p><ul id="e17a37df-0984-42e6-b6aa-03cd06c95954" class="bulleted-list"><li>AWS, DropBox, Okta</li></ul><p id="6d9eebe6-872c-4910-98e3-6fab7bb7e313" class="">
+</p></div><div id="c74ae438-a5d2-46b7-a848-4b56e2f6cf74" style="width:50%" class="column"><p id="33535354-4c3d-463d-9197-1c3ce2d3d974" class=""><strong>Postgres (Express)</strong></p><ul id="d8bae6b7-8968-47aa-bc71-e553397b4d05" class="bulleted-list"><li>MySql, MariaDB</li></ul></div></div><p id="ab8fbabe-0a5f-4374-aa28-d322c81746db" class="block-color-yellow"><strong>Why did you decide on this solution? (what are the advantages?)</strong></p><div id="713a11b6-f39f-4508-aa84-f27d62de4cff" class="column-list"><div id="e28e6761-138e-4bf3-a590-783d8cb0f6a0" style="width:50%" class="column"><p id="cc655c0b-7814-4e01-8088-70e0394c8324" class=""><strong>Firebase (current)</strong></p><ul id="25cedbdf-c159-44ea-882a-c0aa1d63cbdd" class="bulleted-list"><li>Provides easy implementation for social login, Authentication and storing can be done in one place</li></ul><ul id="0683ebe2-5818-4f95-8918-cd22df62d2fd" class="bulleted-list"><li>Will reevaluate if DropBox can be used for storage - that is what the stakeholder is currently using.</li></ul></div><div id="99cdabad-1886-4fe5-a0d2-324544d96da9" style="width:50%" class="column"><p id="bf1327bb-b4a3-43e1-81d7-21afd21e74ff" class=""><strong>Postgres (Express)</strong></p><ul id="f18eda7d-f6c2-46d5-aca2-4b316bba2f56" class="bulleted-list"><li>Can be argued that it is just as scalable as other SQL databases but has the advantage that the team is more comfortable with this one.</li></ul></div></div><p id="5fe27344-59f8-4c00-aff7-f01a327adba1" class="block-color-yellow"><strong>What are the potential challenges can you foresee?</strong></p><div id="477f23bb-6ed6-4f77-ad4f-6a0a8e9e0023" class="column-list"><div id="5522dd50-6c19-4587-8d98-a702078bee7b" style="width:50%" class="column"><p id="69630f2a-0f32-484a-ae97-37e37aa52072" class=""><strong>Firebase</strong></p><ul id="5652937f-a1f2-4e65-a739-9b6ffa91be80" class="bulleted-list"><li>Navigating firebase as a whole</li></ul><ul id="c10886ac-524d-41ba-8e54-3e0417c1608e" class="bulleted-list"><li>Accessing the schematic that is uploaded to firebase through the front end</li></ul></div><div id="9411c987-1eae-4d49-8f6c-c8054fcc4d4e" style="width:50%" class="column"><p id="ee7c4833-eb20-470c-b305-2097626453a9" class=""><strong>Postgres</strong> (Express)</p><ul id="8fe54aa9-4ee3-4f38-a8d2-71ce1656383f" class="bulleted-list"><li>See Above ^</li></ul></div></div><h2 id="25d7ecca-fa6c-49d4-a3ae-85c47270a53f" class="">Front-end</h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="84ae2ad8-11dc-47c8-b4d4-2248bea3af3e"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">See <a href="https://www.notion.so/lambdaschool/Technical-Research-Guide-771ac8d9283b4bf7b0de3cc9e66e4a92#4a65ba1405ae4aa08f818441722a0f32">the guide </a>for more info on how/what to research here</div></figure><p id="5355ec28-155f-45e8-888f-92499a0dd4f6" class="block-color-yellow"><strong>What Framework are you using for your FE?</strong></p><div id="c3a376ae-381b-4dcb-be2c-1a806575f983" class="column-list"><div id="41bcdbcb-44af-47be-924f-71f76f64cbd5" style="width:50%" class="column"><p id="299363f6-1a67-4a91-97ac-a22c6780bf85" class=""><strong>Front-end</strong> (Web)</p><ul id="c8bac9aa-39e3-49e8-ae7f-e2b4fa24ce3d" class="bulleted-list"><li>Rendering – React</li></ul><ul id="925c08ef-3e16-43fd-a25d-7ee111e6162f" class="bulleted-list"><li>State Management - Redux</li></ul></div><div id="5a8d195c-6690-42df-a59f-0133da53b29d" style="width:50%" class="column"><p id="9db9c8dd-c372-4b38-b51e-e077631a0d30" class=""><strong>Front-end</strong> (iOS)<div class="indented"><ul id="969efd28-69da-4703-a001-aebb96f4ef97" class="bulleted-list"><li>Swift</li></ul><p id="e5c81894-9c93-4029-850b-0469ec3bb6c6" class="">
+</p></div></p></div></div><p id="e860461a-4a2a-4dd5-ac22-0159f62b162d" class="block-color-yellow"><strong>What alternatives were considered? </strong></p><ul id="cd802c27-4c17-488d-9578-3fa8b20d9b3c" class="bulleted-list"><li>React Native (for potential future development on Android)</li></ul><p id="ecf22242-c73e-4383-bbf9-c7902101f510" class="block-color-yellow"><strong>Why did you decide on this framework over the alternatives (what are the advantages?)</strong></p><ul id="0d0885db-a98c-471a-8474-3a9f30d2f317" class="bulleted-list"><li>Because this product lifecycle is so iOS heavy, ...</li></ul><p id="62f9a254-81f3-4848-baa3-6f645a69fca8" class="block-color-yellow"><strong>What potential challenges can you foresee using this framework?</strong></p><ul id="7e60a296-524b-47a1-9f31-4ff94bbc78fb" class="bulleted-list"><li>🤷🏼‍♂️</li></ul><h2 id="fc827d3c-bff5-42f2-91d2-eb72afe944b5" class="">Styling Considerations</h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="57cedf40-d171-43b6-957d-8e48b2572859"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">See <a href="https://www.notion.so/lambdaschool/Technical-Research-Guide-771ac8d9283b4bf7b0de3cc9e66e4a92#e84daaaa1f4046da9a90b525892ce764">the guide</a> for more info on this section.</div></figure><p id="3a2158c3-5648-4a7d-8693-83046f979404" class="">Styling Library</p><ul id="6d663ee0-ae7d-4d51-8a66-75b7b1f731cc" class="bulleted-list"><li>iOS - <a href="https://github.com/huri000/SwiftEntryKit?utm_source=mybridge&amp;utm_medium=blog&amp;utm_campaign=read_more">S</a>wift Entry Kit for any banners or pop-ups</li></ul><ul id="7bc136f3-f5e3-4cbf-9ce0-00b87b9715e2" class="bulleted-list"><li>iOS - Spreadsheet View for viewing job sheets (csv)</li></ul><ul id="98cf10bc-174e-404c-94a4-d91a8e270d5c" class="bulleted-list"><li>iOS - PDFKit for viewing schematics (PDF)</li></ul><ul id="1e6ac26c-4a30-4e6e-871b-c0196391dbe3" class="bulleted-list"><li>Web – Styled Components</li></ul><p id="99fa31f0-9873-4e4b-ae8a-051db965dda4" class="">Alternatives - Node SASS, Tailwinds</p><p id="806f30c4-d6f4-4de9-b04f-47c7f7761edd" class="">Why -</p><p id="88e26c94-1a06-4633-a964-2558a443a0c2" class="">Potential Challenges -</p><p id="dfdad49d-6a88-4611-ab7e-fbd8af0afdf5" class="">
+</p><p id="2f4c998d-55be-4820-8baf-4160d5ac50df" class="">
+</p><figure class="block-color-yellow callout" style="white-space:pre-wrap;display:flex" id="b23f6173-825a-489a-8567-a71d7393f61f"><div style="font-size:1.5em"><span class="icon">🚧</span></div><div style="width:100%">Technical Research Items are individual research pieces you may choose to associate to specific Release Canvases</div></figure><div id="33852324-2b21-4ea3-900b-ad607ba6819f" class="collection-content"><h4 class="collection-title">[T] Tech Research Items</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>Created</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><polygon points="4.5 1 4.5 3 9.586 3 1 11.586 2.414 13 11 4.414 11 9.5 13 9.5 13 1"></polygon></svg></span>Release Canvases</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Tags</th></tr></thead><tbody><tr id="e458d935-1c55-44cd-bfb4-8b9e3fa7e667"><td class="cell-title"><a href="Technical%20Research/T%20Tech%20Research%20Items/API%20Format%20Sample.html"><span class="icon">🚧</span>API Format (Sample)</a></td><td class="cell-6mvG"><time>@Jan 07, 2020 10:12 PM</time></td><td class="cell-2tt&lt;"></td><td class="cell-Tb_0"></td></tr><tr id="929931ed-7901-4034-8950-bf416b33af47"><td class="cell-title"><a href="Technical%20Research/T%20Tech%20Research%20Items/Template%20Technical%20Research%20Item.html"><span class="icon">🚧</span>[Template] Technical Research Item</a></td><td class="cell-6mvG"><time>@Jan 07, 2020 10:12 PM</time></td><td class="cell-2tt&lt;"></td><td class="cell-Tb_0"></td></tr><tr id="e65eb9cc-9cc9-412a-8222-adc498140fdb"><td class="cell-title"><a href="Technical%20Research/T%20Tech%20Research%20Items/https%20www%20notion%20so%20Technical%20Research%2063212e14171.html">https://www.notion.so/Technical-Research-63212e14171d4b609901dc2de8008985</a></td><td class="cell-6mvG"><time>@Jan 21, 2020 3:48 PM</time></td><td class="cell-2tt&lt;"><a href="Release%20Canvases/L20%201%20Release%20Canvas%20WEB.html"><span class="icon">🖥</span>L20.1 - Release Canvas (WEB)</a>, <a href="Release%20Canvases/L20%201%20Release%20Canvas%20iOS.html"><span class="icon">📱</span>L20.1 - Release Canvas iOS</a>, <a href="Release%20Canvases/L20%202%20Release%20Canvas%20iOS.html"><span class="icon">📱</span>L20.2 - Release Canvas iOS</a>, <a href="Release%20Canvases/L20%202%20Release%20Canvas%20WEB.html"><span class="icon">🖥</span>L20.2 - Release Canvas (WEB)</a>, <a href="Release%20Canvases/Release%20Canvas%20Master%20List.html"><span class="icon">📐</span>Release Canvas Master List</a>, <a href="Release%20Canvases/L22%201%20Release%20Canvas%20WEB.html"><span class="icon">🖥</span>L22.1 - Release Canvas (WEB)</a>, <a href="Release%20Canvases/L22%203%20Release%20Canvas%20WEB.html"><span class="icon">🖥</span>L22.3 - Release Canvas (WEB)</a></td><td class="cell-Tb_0"></td></tr></tbody></table></div></div></article></body></html>
